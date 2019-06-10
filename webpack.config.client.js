@@ -1,13 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     mode:"development",
     entry:  './public/src/index.js',
     output:{
-        filename:'bundle-[chunkhash].js',
+        filename:'bundle-[hash].js',
         path:path.resolve(__dirname,"dist/public")
     },
     devtool: "source-map",
@@ -66,6 +65,8 @@ module.exports = {
             filename: "./index.html",
             excludeChunks: [ 'server' ],
             favicon: "./public/favicon.ico"
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 }

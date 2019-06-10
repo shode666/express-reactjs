@@ -3,7 +3,7 @@ import React from 'react'
 const App = () => {
     return (
         <div>
-            Hello world! 2
+            Hello world! react
         </div>
     )
 }
