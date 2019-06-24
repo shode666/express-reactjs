@@ -1,15 +1,15 @@
 const path = require('path')
-const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     mode:"development",
     entry: {
-        server: './server.js',
+        server: './server/server.js',
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000
     },
     output:{
         filename:'[name].js',
@@ -37,11 +37,8 @@ module.exports = {
                         ]
                     }
                 }
-            },
-            {
-                test: /\.html$/,
-                use: ["html-loader"]
-              }
+            }
         ]
-    }
+    },
+
 }

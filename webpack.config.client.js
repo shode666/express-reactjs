@@ -1,13 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode:"development",
-    entry:  './public/src/index.js',
+    entry:  './public/index.js',
     output:{
         filename:'bundle-[hash].js',
         path:path.resolve(__dirname,"dist/public")
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
     },
     devtool: "source-map",
     module:{
@@ -19,7 +25,7 @@ module.exports = {
                     loader:'babel-loader',
                     options:{
                         presets:['@babel/preset-react'],
-                        
+
                     }
                 }
             },
@@ -60,6 +66,7 @@ module.exports = {
         }
     },
     plugins:[
+        new CleanWebpackPlugin(),
         new HtmlWebPackPlugin({
             template: "./public/index.html",
             filename: "./index.html",
@@ -67,6 +74,6 @@ module.exports = {
             favicon: "./public/favicon.ico"
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
     ]
 }
