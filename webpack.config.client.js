@@ -46,7 +46,10 @@ module.exports = {
                 use: [{
                         loader: 'file-loader',
                         options: {
-                            outputPath:'./image/'
+                            name: '[name].[ext]',
+                            context: "./src",
+                            outputPath:'./images',
+                            useRelativePaths: true
                         }
                     }],
             },
@@ -54,6 +57,7 @@ module.exports = {
                 test: /\.ico$/,
                 loader: 'file-loader',
                 options: {
+                    name: '[path][name].[ext]',
                     outputPath:'./'
                 }
             },
@@ -62,7 +66,7 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx'],
         alias: {
-            '~': path.resolve(__dirname, './public/js'),
+            '~': path.resolve(__dirname, './public/src'),
         }
     },
     plugins:[

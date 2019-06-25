@@ -20,5 +20,4 @@ router.get('/add/:increment',(req,res)=>{
   res.send(`${req.session.number}`);
 })
 
-
 export default router;
